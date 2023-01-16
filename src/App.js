@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,7 +21,6 @@ import Paper from '@mui/material/Paper';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -49,9 +48,9 @@ const MyApp = () => {
   const [cpt, setCpt] = useState('');
   const [result, setResult] = useState([]);
   const [showResult, setShowResult] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
   const [resultLength, setResultLength] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [current, setCurrent] = useState(1);
   const [table, setTable] = useState(originalData);
 
@@ -66,10 +65,9 @@ const MyApp = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleEditFormOpen = (id) => {
-
-    setIsEditing(true)
+    // setIsEditing(true)
     setOpen(true);
-    let obj = table.filter(item => item.id == id)[0]
+    let obj = table.filter(item => String(item.id) === String(id))[0]
     setFormDx(obj?.dx)
     setFormCpt(obj?.cpt)
     setFormAge(obj?.age)
@@ -92,11 +90,11 @@ const MyApp = () => {
     let dxFound = []
     let status
 
-    if (dx == "" && cpt == "") {
+    if (dx === "" && cpt === "") {
       status = "No data"
-    } else if (cpt == "") {
+    } else if (cpt === "") {
       status = "No CPT"
-    } else if (dx == "") {
+    } else if (dx === "") {
       status = "No Dx"
     } else if (dx !== "" && cpt !== "") {
       status = "Dx and Cpt"
